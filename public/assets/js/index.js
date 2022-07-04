@@ -1,0 +1,1 @@
+"use strict";var notify=$.notify('<i class="fa fa-bell-o"></i><strong>Loading</strong> page Do not close this page...',{type:"theme",allow_dismiss:!0,delay:2e3,showProgressbar:!0,timer:300});setTimeout((function(){notify.update("message",'<i class="fa fa-bell-o"></i><strong>Loading</strong> Inner Data.')}),1e3);
