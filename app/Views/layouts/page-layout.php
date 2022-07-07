@@ -12,7 +12,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <title>viho - Premium Admin Template</title>
+    <title>Dashboard - Penentuan Harga Jual Pertanian</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -64,11 +64,16 @@
         <div class="page-main-header">
             <div class="main-header-right row m-0">
                 <div class="main-header-left">
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid"
-                                src="<?= base_url() ?>/assets/images/logo.png" alt></a>
+                    <div class="logo-wrapper text-center">
+                        <a href="index.html">
+                            <span class="text-center font-weight-bold">Penentuan Harga Jual Pertanian</span>
+                        </a>
                     </div>
-                    <div class="dark-logo-wrapper"><a href="index.html"><img class="img-fluid"
-                                src="<?= base_url() ?>/assets/images/dark-logo.png" alt></a></div>
+                    <div class="dark-logo-wrapper text-center">
+                        <a href="index.html">
+                            <span class="text-center font-weight-bold text-white">Penentuan Harga Jual Pertanian</span>
+                        </a>
+                    </div>
                     <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center"
                             id="sidebar-toggle"></i></div>
                 </div>
@@ -103,7 +108,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6 footer-copyright">
-                            <p class="mb-0">Copyright 2021-22 © viho All rights reserved.</p>
+                            <p class="mb-0">Copyright 2022 © Dina Deliana All rights reserved.</p>
                         </div>
                         <div class="col-md-6">
                             <p class="pull-right mb-0">Hand crafted & made with <i

@@ -35,12 +35,41 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'AuthController::index', ['as' => 'index']);
-
+$routes->get('/', 'AuthController::login', ['as' => 'login']);
 
 
 $routes->group('admin', function($routes){
-    $routes->get('/', 'UserController::dashboard_admin', ['as' => 'dashboard_admin_index']);
+    $routes->get('dashboard', 'UserController::dashboard_admin', ['as' => 'dashboard_admin_index']);
+
+    // Manajemen Untuk Data Alternatif
+    $routes->group('data-alternatif', function($routes){
+        $routes->get('/', 'AlternatifController::index', ['as' => 'alternatif_index']);
+    });
+
+    // Manajemen Untuk Data Kriteria
+    $routes->group('data-kriteria', function($routes){
+        $routes->get('/', 'KriteriaController::index', ['as' => 'kriteria_index']);
+    });
+
+    // Manajemen Untuk Data Sub Kriteria
+    $routes->group('data-sub-kriteria', function($routes){
+        $routes->get('/', 'SubKriteriaController::index', ['as' => 'sub_kriteria_index']);
+    });
+
+    // Manajamen Untuk Perhitungan Topsis
+    $routes->group('perhitungan-topsis', function($routes){
+        $routes->get('/', 'PerhitunganTopsisController::index', ['as' => 'perhitungan_topsis_index']);
+    });
+
+    // Manajemen Untuk Hasil Akhir
+    $routes->group('hasil-akhir', function($routes){
+        $routes->get('/', 'HasilAkhirController::index', ['as' => 'hasil_akhir_index']);
+    });
+
+    // Manajemen Data Pengepul
+    $routes->group('data-pengepul', function($routes){
+        $routes->get('/', 'PengepulController::index', ['as' => 'pengepul_index']);
+    });
 });
 
 /*

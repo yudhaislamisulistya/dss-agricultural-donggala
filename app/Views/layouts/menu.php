@@ -12,25 +12,25 @@
                         <h6>Umum </h6>
                     </div>
                 </li>
-                <li class="dropdown"><a class="nav-link menu-title link-nav" href="file-manager.html"><i
+                <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= route_to('dashboard_admin_index') ?>"><i
+                            data-feather="home"></i><span>Dasboard</span></a></li>
+                <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= route_to('alternatif_index') ?>"><i
                             data-feather="git-pull-request"></i><span>Data Alternatif</span></a></li>
-                <li class="dropdown"><a class="nav-link menu-title link-nav" href="kanban.html"><i
-                            data-feather="monitor"></i><span>Data Kriteria</span></a></li>
-                <li class="dropdown"><a class="nav-link menu-title link-nav" href="kanban.html"><i
-                            data-feather="monitor"></i><span>Data Sub Kriteria</span></a></li>
-                <li class="dropdown"><a class="nav-link menu-title link-nav" href="kanban.html"><i
-                            data-feather="monitor"></i><span>Perhitungan TOPSIS</span></a></li>
-                <li class="dropdown"><a class="nav-link menu-title link-nav" href="kanban.html"><i
-                            data-feather="monitor"></i><span>Data Hasil Akhir</span></a></li>
+                <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= route_to('kriteria_index') ?>"><i
+                            data-feather="activity"></i><span>Data Kriteria</span></a></li>
+                <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= route_to('sub_kriteria_index') ?>"><i
+                            data-feather="bar-chart-2"></i><span>Data Sub Kriteria</span></a></li>
+                <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= route_to('perhitungan_topsis_index') ?>"><i
+                            data-feather="aperture"></i><span>Perhitungan TOPSIS</span></a></li>
+                <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= route_to('hasil_akhir_index') ?>"><i
+                            data-feather="award"></i><span>Data Hasil Akhir</span></a></li>
                 <li class="sidebar-main-title">
                     <div>
                         <h6>Lainnya </h6>
                     </div>
                 </li>
-                <li class="dropdown"><a class="nav-link menu-title link-nav" href="file-manager.html"><i
-                            data-feather="git-pull-request"></i><span>Data User</span></a></li>
-                <li class="dropdown"><a class="nav-link menu-title link-nav" href="file-manager.html"><i
-                            data-feather="git-pull-request"></i><span>Ganti Password</span></a></li>
+                <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= route_to('pengepul_index') ?>"><i
+                            data-feather="user"></i><span>Data Pengepul</span></a></li>
             </ul>
         </div>
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
