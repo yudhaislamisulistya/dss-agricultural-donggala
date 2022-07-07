@@ -68,7 +68,7 @@
         </div>
     </div>
 
-        <!-- Modal Add Data Altenatif-->
+        <!-- Modal Add Data Kriteria-->
         <form action="<?= route_to('kriteria_admin_save') ?>" method="post">
         <?= csrf_field()?>
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -105,9 +105,9 @@
             </div>
         </div>
     </form>
-    <!-- End Modal Add Data Altenatif-->
+    <!-- End Modal Add Data Kriteria-->
 
-    <!-- Modal Edit Data Altenatif-->
+    <!-- Modal Edit Data Kriteria-->
         <form action="<?= route_to('kriteria_admin_update') ?>" method="post">
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -145,7 +145,7 @@
             </div>
         </div>
     </form>
-    <!-- End Modal Edit Data Altenatif-->
+    <!-- End Modal Edit Data Kriteria-->
 
     <!-- Modal Delete Category-->
         <form action="<?= route_to('kriteria_admin_delete') ?>" method="post">

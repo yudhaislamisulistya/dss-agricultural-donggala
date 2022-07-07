@@ -62,6 +62,9 @@ $routes->group('admin', function($routes){
     // Manajemen Untuk Data Sub Kriteria
     $routes->group('data-sub-kriteria', function($routes){
         $routes->get('/', 'SubKriteriaController::index', ['as' => 'sub_kriteria_admin_index']);
+        $routes->post('save', 'SubKriteriaController::save', ['as' => 'sub_kriteria_admin_save']);
+        $routes->post('update', 'SubKriteriaController::update', ['as' => 'sub_kriteria_admin_update']);
+        $routes->post('delete', 'SubKriteriaController::delete', ['as' => 'sub_kriteria_admin_delete']);
     });
 
     // Manajamen Untuk Perhitungan Topsis
