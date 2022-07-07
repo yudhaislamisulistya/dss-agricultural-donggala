@@ -10,4 +10,12 @@ class UserController extends BaseController
     {
         return view('admin/dashboard');
     }
+
+    public function dashboard_collector(){
+        return view('collector/dashboard');
+    }
+
+    public function profil(){
+        return view('collector/profil');
+    }
 }

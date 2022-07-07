@@ -43,32 +43,51 @@ $routes->group('admin', function($routes){
 
     // Manajemen Untuk Data Alternatif
     $routes->group('data-alternatif', function($routes){
-        $routes->get('/', 'AlternatifController::index', ['as' => 'alternatif_index']);
+        $routes->get('/', 'AlternatifController::index', ['as' => 'alternatif_admin_index']);
     });
 
     // Manajemen Untuk Data Kriteria
     $routes->group('data-kriteria', function($routes){
-        $routes->get('/', 'KriteriaController::index', ['as' => 'kriteria_index']);
+        $routes->get('/', 'KriteriaController::index', ['as' => 'kriteria_admin_index']);
     });
 
     // Manajemen Untuk Data Sub Kriteria
     $routes->group('data-sub-kriteria', function($routes){
-        $routes->get('/', 'SubKriteriaController::index', ['as' => 'sub_kriteria_index']);
+        $routes->get('/', 'SubKriteriaController::index', ['as' => 'sub_kriteria_admin_index']);
     });
 
     // Manajamen Untuk Perhitungan Topsis
     $routes->group('perhitungan-topsis', function($routes){
-        $routes->get('/', 'PerhitunganTopsisController::index', ['as' => 'perhitungan_topsis_index']);
+        $routes->get('/', 'PerhitunganTopsisController::index', ['as' => 'perhitungan_topsis_admin_index']);
     });
 
     // Manajemen Untuk Hasil Akhir
     $routes->group('hasil-akhir', function($routes){
-        $routes->get('/', 'HasilAkhirController::index', ['as' => 'hasil_akhir_index']);
+        $routes->get('/', 'HasilAkhirController::index', ['as' => 'hasil_akhir_admin_index']);
     });
 
     // Manajemen Data Pengepul
     $routes->group('data-pengepul', function($routes){
-        $routes->get('/', 'PengepulController::index', ['as' => 'pengepul_index']);
+        $routes->get('/', 'PengepulController::index', ['as' => 'pengepul_admin_index']);
+    });
+});
+
+$routes->group('collector', function($routes){
+    $routes->get('dashboard', 'UserController::dashboard_collector', ['as' => 'dashboard_collector_index']);
+
+    // Manajemen Penentuan Hasil Panen
+    $routes->group('hasil-panen', function($routes){
+        $routes->get('/', 'HasilPanenController::index', ['as' => 'hasil_panen_collector_index']);
+    });
+
+    // Manajemen Histori
+    $routes->group('histori', function($routes){
+        $routes->get('/', 'HistoriController::index', ['as' => 'histori_collector_index']);
+    });
+
+    // Manajemen Profil
+    $routes->group('profil', function($routes){
+        $routes->get('/', 'UserController::profil', ['as' => 'profil_collector_index']);
     });
 });
 
