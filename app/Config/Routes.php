@@ -36,6 +36,8 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'AuthController::login', ['as' => 'login']);
+$routes->post('/', 'AuthController::login_post', ['as' => 'login_post']);
+$routes->get('/logout', 'AuthController::logout', ['as' => 'logout']);
 
 
 $routes->group('admin', function($routes){
@@ -44,11 +46,17 @@ $routes->group('admin', function($routes){
     // Manajemen Untuk Data Alternatif
     $routes->group('data-alternatif', function($routes){
         $routes->get('/', 'AlternatifController::index', ['as' => 'alternatif_admin_index']);
+        $routes->post('save', 'AlternatifController::save', ['as' => 'alternatif_admin_save']);
+        $routes->post('update', 'AlternatifController::update', ['as' => 'alternatif_admin_update']);
+        $routes->post('delete', 'AlternatifController::delete', ['as' => 'alternatif_admin_delete']);
     });
 
     // Manajemen Untuk Data Kriteria
     $routes->group('data-kriteria', function($routes){
         $routes->get('/', 'KriteriaController::index', ['as' => 'kriteria_admin_index']);
+        $routes->post('save', 'KriteriaController::save', ['as' => 'kriteria_admin_save']);
+        $routes->post('update', 'KriteriaController::update', ['as' => 'kriteria_admin_update']);
+        $routes->post('delete', 'KriteriaController::delete', ['as' => 'kriteria_admin_delete']);
     });
 
     // Manajemen Untuk Data Sub Kriteria

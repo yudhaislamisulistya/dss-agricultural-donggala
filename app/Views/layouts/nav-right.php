@@ -49,7 +49,7 @@
             <div class="mode"><i class="fa fa-moon-o"></i></div>
         </li>
         <li class="onhover-dropdown p-0">
-            <button class="btn btn-primary-light" type="button"><a href="login_two.html"><i
+            <button class="btn btn-primary-light" type="button"><a href="<?= route_to('logout') ?>"><i
                         data-feather="log-out"></i>Log out</a></button>
         </li>
     </ul>

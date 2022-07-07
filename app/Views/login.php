@@ -57,24 +57,32 @@
     <section>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-7"><img class="bg-img-cover bg-center" src="<?= base_url() ?>/assets/images/logo/2.jpeg"
-                        alt="looginpage"></div>
+                <div class="col-xl-7"><img class="bg-img-cover bg-center"
+                        src="<?= base_url() ?>/assets/images/logo/2.jpeg" alt="looginpage"></div>
                 <div class="col-xl-5 p-0">
                     <div class="login-card">
-                        <form class="theme-form login-form">
+                        <form class="theme-form login-form" method="POST" action="<?= route_to('login_post') ?>">
                             <h4>Login</h4>
                             <h6>Welcome back! Log in to your account.</h6>
+                            <?php if(isset($validation)) : ?>
+                            <div class=col-12>
+                                <div class="alert alert-danger" role="alert">
+                                    <?= $validation->listErrors() ?>
+                                </div>
+                            </div>
+                            <?php endif; ?>
                             <div class="form-group">
                                 <label>Email Address</label>
                                 <div class="input-group"><span class="input-group-text"><i
                                             class="icon-email"></i></span>
-                                    <input class="form-control" type="email" required="" placeholder="Test@gmail.com">
+                                    <input class="form-control" name="email" type="email" required=""
+                                        placeholder="Test@gmail.com">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
-                                    <input class="form-control" type="password" name="login[password]" required=""
+                                    <input class="form-control" type="password" name="password" required=""
                                         placeholder="*********">
                                 </div>
                             </div>

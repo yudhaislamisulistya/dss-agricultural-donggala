@@ -149,6 +149,7 @@
     <!-- Theme js-->
     <script src="<?= base_url() ?>/assets/js/script.js"></script>
     <script src="<?= base_url() ?>/assets/js/customizer.js"></script>
+    <?= $this->renderSection('javascript') ?>
     <!-- login js-->
     <!-- Plugin used-->
 

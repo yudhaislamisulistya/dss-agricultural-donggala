@@ -1,4 +1,5 @@
-<!-- <nav>
+<?php if(session()->get('role') == 2){ ?>
+    <nav>
     <div class="main-navbar">
         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
         <div id="mainnav">
@@ -35,9 +36,9 @@
         </div>
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
     </div>
-</nav> -->
-
-<nav>
+</nav>
+<?php }else if(session()->get('role') == 1){ ?>
+    <nav>
     <div class="main-navbar">
         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
         <div id="mainnav">
@@ -69,3 +70,4 @@
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
     </div>
 </nav>
+<?php } ?>
