@@ -7,7 +7,7 @@
             <div class="col-md-12 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Histori</h4>
+                        <h4 class="card-title">Data Hasil Akhir</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -23,23 +23,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>AX09983</td>
-                                        <td>
-                                            <ol>
-                                                <ul>Padi</ul>
-                                                <ul>Jagung</ul>
-                                                <ul>Kacang Kedelai</ul>
-                                                <ul>Cabai</ul>
-                                            </ol>
-                                        </td>
-                                        <td>Padi</td>
-                                        <td>27 Juni 2022</td>
-                                        <td>
-                                            <a class="btn btn-iconsolid btn-sm" href="cart.html"><i class="icon-pencil">Detail Perhitungan</i></a>
-                                        </td>
-                                    </tr>
+                                    <?php foreach (get_seleksi_by_id_user(session()->get('id_user')) as $key => $value) { ?>
+                                        <tr>
+                                            <td><?=  ++$key ?></td>
+                                            <td><?=$value->kode_seleksi ?></td>
+                                            <td>
+                                                <ol>
+                                                    <?php if(get_rating_by_kode_seleksi_all($value->kode_seleksi)){ ?>
+                                                        <?php foreach (get_rating_by_kode_seleksi_all($value->kode_seleksi) as $key2 => $value2) { ?>
+                                                            <li><?= get_alternatif_by_kode_alternatif($value2->kode_alternatif)['nama_alternatif'] ?> - (<?= $value2->hasil ?>) - (Ranking ke <?= $value2->ranking ?>)</li>
+                                                        <?php } ?>
+                                                    <?php }else{?>
+                                                        <span class="badge badge-danger">Urutan Belum Tersedia</span>
+                                                    <?php } ?>
+                                                </ol>
+                                            </td>
+                                            <td>
+                                                <b>
+                                                    <?php if(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)){ ?>
+                                                        <?= get_alternatif_by_kode_alternatif(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)['kode_alternatif'])['nama_alternatif'] ?>
+                                                    <?php }else{?>
+                                                        <span class="badge badge-danger">Rekomendasi Belum Tersedia</span>
+                                                    <?php } ?>
+                                                </b>
+                                            </td>
+                                            <td>
+                                                <?= $value->created_at ?>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-iconsolid btn-sm" href="<?= route_to('hasil_panen_collector_detail', $value->kode_seleksi) ?>"><i class="icon-pencil">Detail Perhitungan</i></a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

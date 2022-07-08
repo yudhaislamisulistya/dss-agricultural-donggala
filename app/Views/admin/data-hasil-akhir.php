@@ -23,10 +23,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach (get_seleksi_by_id_user(session()->get('id_user')) as $key => $value) { ?>
+                                    <?php foreach (get_seleksi() as $key => $value) { ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td><?= get_user_by_id_user($value->id_user)['nama_lengkap'] ?></td>
+                                            <td><?= ++$key ?></td>
+                                            <td><?= get_user_by_id_user($value->id_user)['nama_lengkap'] ?> - <?= $value->kode_seleksi ?> (<?= get_user_by_id_user($value->id_user)['role'] == 2 ? "Me" : "Collector" ?>)</td>
                                             <td>
                                                 <ol>
                                                     <?php if(get_rating_by_kode_seleksi_all($value->kode_seleksi)){ ?>

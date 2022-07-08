@@ -112,6 +112,8 @@ $routes->group('collector', function($routes){
     // Manajemen Profil
     $routes->group('profil', function($routes){
         $routes->get('/', 'UserController::profil', ['as' => 'profil_collector_index']);
+        $routes->post('edit', 'UserController::edit', ['as' => 'profil_collector_edit']);
+        $routes->post('edit/password', 'UserController::edit_password', ['as' => 'profil_collector_edit_password']);
     });
 });
 

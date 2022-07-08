@@ -107,6 +107,12 @@ function get_seleksi_by_id_user_dan_limit_5($id_user){
     return $data;
 }
 
+function get_seleksi_by_limit_5(){
+    $seleksiModel = new SeleksiModel();
+    $data = $seleksiModel->groupBy('kode_seleksi')->limit(5)->get()->getResult();
+    return $data;
+}
+
 function get_seleksi(){
     $seleksiModel = new SeleksiModel();
     $data = $seleksiModel->groupBy('kode_seleksi')->get()->getResult();

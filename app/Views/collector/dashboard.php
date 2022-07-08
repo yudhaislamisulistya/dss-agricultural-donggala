@@ -172,7 +172,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <h5><?= count(get_seleksi()) ?></h5>
+                            <h5><?= count(get_seleksi_by_id_user(session()->get('id_user'))) ?></h5>
                             <p>Data Hasil Perhitungan</p><a class="btn-arrow arrow-secondary"
                                 href="javascript:void(0)"></a>
                             <div class="parrten">

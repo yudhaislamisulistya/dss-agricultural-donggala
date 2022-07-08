@@ -196,7 +196,7 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Pengepul</th>
+                  <th>Kode</th>
                   <th>Urutan</th>
                   <th>Rekomendasi</th>
                   <th>Tanggal</th>
@@ -217,29 +217,37 @@
                 </tr>
               </thead>
               <tbody>
-              <?php foreach (get_seleksi_by_id_user_dan_limit_5(session()->get('id_user')) as $key => $value) { ?>
-                    <tr>
-                        <td>1</td>
-                        <td><?= get_user_by_id_user($value->id_user)['nama_lengkap'] ?></td>
-                        <td>
-                            <ol>
-                                <?php foreach (get_rating_by_kode_seleksi_all($value->kode_seleksi) as $key2 => $value2) { ?>
-                                    <li><?= get_alternatif_by_kode_alternatif($value2->kode_alternatif)['nama_alternatif'] ?> - (<?= $value2->hasil ?>) - (Ranking ke <?= $value2->ranking ?>)</li>
-                                <?php } ?>
-                            </ol>
-                        </td>
-                        <td>
-                            <b>
-                                <?= get_alternatif_by_kode_alternatif(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)['kode_alternatif'])['nama_alternatif']?>
-                            </b>
-                        </td>
-                        <td>
-                            <?= $value->created_at ?>
-                        </td>
-                        <td>
-                            <a class="btn btn-iconsolid btn-sm" href="<?= route_to('perhitungan_topsis_admin_detail', $value->kode_seleksi) ?>"><i class="icon-pencil">Detail Perhitungan</i></a>
-                        </td>
-                    </tr>
+              <?php foreach (get_seleksi_by_limit_5() as $key => $value) { ?>
+                        <tr>
+                            <td><?= ++$key ?></td>
+                            <td><?= get_user_by_id_user($value->id_user)['nama_lengkap'] ?> - <?= $value->kode_seleksi ?> (<?= get_user_by_id_user($value->id_user)['role'] == 2 ? "Me" : "Collector" ?>)</td>
+                            <td>
+                                <ol>
+                                    <?php if(get_rating_by_kode_seleksi_all($value->kode_seleksi)){ ?>
+                                        <?php foreach (get_rating_by_kode_seleksi_all($value->kode_seleksi) as $key2 => $value2) { ?>
+                                            <li><?= get_alternatif_by_kode_alternatif($value2->kode_alternatif)['nama_alternatif'] ?> - (<?= $value2->hasil ?>) - (Ranking ke <?= $value2->ranking ?>)</li>
+                                        <?php } ?>
+                                    <?php }else{?>
+                                        <span class="badge badge-danger">Urutan Belum Tersedia</span>
+                                    <?php } ?>
+                                </ol>
+                            </td>
+                            <td>
+                                <b>
+                                    <?php if(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)){ ?>
+                                        <?= get_alternatif_by_kode_alternatif(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)['kode_alternatif'])['nama_alternatif'] ?>
+                                    <?php }else{?>
+                                        <span class="badge badge-danger">Rekomendasi Belum Tersedia</span>
+                                    <?php } ?>
+                                </b>
+                            </td>
+                            <td>
+                                <?= $value->created_at ?>
+                            </td>
+                            <td>
+                                <a class="btn btn-iconsolid btn-sm" href="<?= route_to('perhitungan_topsis_admin_detail', $value->kode_seleksi) ?>"><i class="icon-pencil">Detail Perhitungan</i></a>
+                            </td>
+                        </tr>
                 <?php } ?>
               </tbody>
             </table>
