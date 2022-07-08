@@ -35,12 +35,12 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'AuthController::login', ['as' => 'login']);
-$routes->post('/', 'AuthController::login_post', ['as' => 'login_post']);
+$routes->get('/', 'AuthController::login', ['as' => 'login', 'filter' => 'NoAuth']);
+$routes->post('/', 'AuthController::login_post', ['as' => 'login_post', 'filter' => 'NoAuth']);
 $routes->get('/logout', 'AuthController::logout', ['as' => 'logout']);
 
 
-$routes->group('admin', function($routes){
+$routes->group('admin', ['filter' => 'Admin:dual,noreturn'], function($routes){
     $routes->get('dashboard', 'UserController::dashboard_admin', ['as' => 'dashboard_admin_index']);
 
     // Manajemen Untuk Data Alternatif
@@ -91,7 +91,7 @@ $routes->group('admin', function($routes){
     });
 });
 
-$routes->group('collector', function($routes){
+$routes->group('collector',['filter' => 'Collector:dual,noreturn'], function($routes){
     $routes->get('dashboard', 'UserController::dashboard_collector', ['as' => 'dashboard_collector_index']);
 
     // Manajemen Penentuan Hasil Panen
