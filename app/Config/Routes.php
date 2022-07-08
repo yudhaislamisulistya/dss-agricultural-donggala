@@ -70,6 +70,8 @@ $routes->group('admin', function($routes){
     // Manajamen Untuk Perhitungan Topsis
     $routes->group('perhitungan-topsis', function($routes){
         $routes->get('/', 'PerhitunganTopsisController::index', ['as' => 'perhitungan_topsis_admin_index']);
+        $routes->post('save', 'PerhitunganTopsisController::save', ['as' => 'perhitungan_topsis_admin_save']);
+        $routes->get('detail/(:any)', 'PerhitunganTopsisController::detail/$1', ['as' => 'perhitungan_topsis_admin_detail']);
     });
 
     // Manajemen Untuk Hasil Akhir

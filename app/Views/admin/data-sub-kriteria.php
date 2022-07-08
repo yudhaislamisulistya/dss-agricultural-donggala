@@ -39,6 +39,7 @@
                                             <th>Kode</th>
                                             <th>Nama Sub Sub Kriteria</th>
                                             <th>Bobot</th>
+                                            <th>Keterangan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -49,8 +50,19 @@
                                                 <td><?= $value_2->kode_sub_kriteria ?></td>
                                                 <td><?= $value_2->nama_sub_kriteria ?></td>
                                                 <td><?= $value_2->bobot ?></td>
+                                                <td><?= $value_2->keterangan ?></td>
                                                 <td>
-                                                    <button class="btn btn-iconsolid btn-sm btn-edit"><i class="icon-pencil"></i></button>
+                                                    <button class="btn btn-iconsolid btn-sm btn-edit"
+                                                        data-id="<?= $value_2->id_sub_kriteria ?>"
+                                                        data-nama-kriteria="<?= $value_1->nama_kriteria ?>"
+                                                        data-kode-kriteria="<?= $value_1->kode_kriteria?>"
+                                                        data-nama-sub-kriteria="<?= $value_2->nama_sub_kriteria ?>"
+                                                        data-kode-sub-kriteria="<?= $value_2->kode_sub_kriteria ?>"
+                                                        data-bobot="<?= $value_2->bobot ?>"
+                                                        data-keterangan="<?= $value_2->keterangan ?>"
+                                                        >
+                                                        <i class="icon-pencil"></i>
+                                                    </button>
                                                     <button class="btn btn-iconsolid btn-danger btn-sm btn-delete" data-id="<?= $value_2->id_sub_kriteria ?>">
                                                         <i class="icon-trash"></i>
                                                     </button>
@@ -100,6 +112,11 @@
                             <input readonly type="text" class="form-control nama_kriteria" name="nama_kriteria"
                                 placeholder="Kode Kriteria">
                         </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <input type="text" class="form-control keterangan" name="keterangan"
+                                placeholder="Keterangan">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="kode_kriteria" class="kode_kriteria">
@@ -140,8 +157,19 @@
                             <input type="text" class="form-control bobot" name="bobot"
                                 placeholder="Bobot">
                         </div>
+                        <div class="form-group">
+                            <label>Nama Kriteria</label>
+                            <input readonly type="text" class="form-control nama_kriteria" name="nama_kriteria"
+                                placeholder="Kode Kriteria">
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <input type="text" class="form-control keterangan" name="keterangan"
+                                placeholder="Keterangan">
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" name="kode_kriteria" class="kode_kriteria">
                         <input type="hidden" name="id_sub_kriteria" class="id_sub_kriteria">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -195,12 +223,19 @@
         });
         $('.btn-edit').on('click',function(){
             const id = $(this).data('id');
-            const kode_sub_kriteria = $(this).data('kode-kriteria');
-            const nama_sub_kriteria = $(this).data('nama-kriteria');
+            const kode_sub_kriteria = $(this).data('kode-sub-kriteria');
+            const nama_sub_kriteria = $(this).data('nama-sub-kriteria');
+            const kode_kriteria = $(this).data('kode-kriteria');
+            const nama_kriteria = $(this).data('nama-kriteria');
             const bobot = $(this).data('bobot');
+            const keterangan = $(this).data('keterangan');
             $('.id_sub_kriteria').val(id);
             $('.kode_sub_kriteria').val(kode_sub_kriteria);
+            $('.nama_sub_kriteria').val(nama_sub_kriteria);
             $('.bobot').val(bobot);
+            $('.keterangan').val(keterangan);
+            $('.kode_kriteria').val(kode_kriteria);
+            $('.nama_kriteria').val(nama_kriteria);
             $('#editModal').modal('show');
         });
 

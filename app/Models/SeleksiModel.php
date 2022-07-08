@@ -4,23 +4,24 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SubKriteriaModel extends Model
+class SeleksiModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'sub_criterias';
-    protected $primaryKey       = 'id_sub_kriteria';
+    protected $table            = 'selections';
+    protected $primaryKey       = 'id_seleksi';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'id_user',
+        'kode_seleksi',
         'kode_kriteria',
         'kode_sub_kriteria',
-        'nama_sub_kriteria',
-        'bobot',
-        'keterangan',
-        'kode_gabungan'
+        'kode_alternatif',
+        'kode_gabungan',
+        'bobot'
     ];
 
     // Dates

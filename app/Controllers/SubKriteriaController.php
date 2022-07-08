@@ -19,7 +19,7 @@ class SubKriteriaController extends BaseController
     public function save(){
         try {
             $data = $this->request->getVar();
-            $data['kode_gabungan'] = $data['kode_kriteria'] . $data['kode_sub_kriteria'];
+            $data['kode_gabungan'] = $data['kode_kriteria'] .'-'. $data['kode_sub_kriteria'];
             $rules = [
                 'kode_sub_kriteria' => [
                     'rules' => 'required',
@@ -45,6 +45,12 @@ class SubKriteriaController extends BaseController
                         'required' => '{field} Harus Diisi'
                     ]
                 ],
+                'keterangan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus Diisi'
+                    ]
+                ],
             ];
         
             if(!$this->validate($rules)){
@@ -54,6 +60,58 @@ class SubKriteriaController extends BaseController
                 ]);
             }else{
                 $this->subKriteriaModel->insert($data);
+                return redirect()->back()->with('status', 'success');
+            }
+        } catch (\Exception $th) {
+            var_dump($th);
+            die();
+            return redirect()->back()->with('status', 'failed');
+        }
+    }
+    public function update(){
+        try {
+            $data = $this->request->getVar();
+            $data['kode_gabungan'] = $data['kode_kriteria'] .'-'. $data['kode_sub_kriteria'];
+            $rules = [
+                'kode_sub_kriteria' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus Diisi'
+                    ]
+                ],
+                'nama_sub_kriteria' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus Diisi'
+                    ]
+                ],
+                'bobot' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus Diisi'
+                    ]
+                ],
+                'kode_kriteria' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus Diisi'
+                    ]
+                ],
+                'keterangan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus Diisi'
+                    ]
+                ],
+            ];
+        
+            if(!$this->validate($rules)){
+                return view('admin/data-sub-kriteria',[
+                    'validation' => $this->validator,
+                    'data' => $data
+                ]);
+            }else{
+                $this->subKriteriaModel->update($data['id_sub_kriteria'], $data);
                 return redirect()->back()->with('status', 'success');
             }
         } catch (\Exception $th) {
