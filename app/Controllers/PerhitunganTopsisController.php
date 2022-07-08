@@ -3,12 +3,16 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\RatingModel;
+use App\Models\RekomendasiModel;
 use App\Models\SeleksiModel;
 
 class PerhitunganTopsisController extends BaseController
 {
     public function __construct(){
+        $this->ratingModel = new RatingModel();
         $this->seleksiModel = new SeleksiModel();
+        $this->rekomendasiModel = new RekomendasiModel();
     }
     public function index(){
         return view('admin/perhitungan-topsis');
@@ -43,9 +47,37 @@ class PerhitunganTopsisController extends BaseController
         }
     }
     public function delete(){
-
     }
     public function detail($kode_seleksi){
         return view('admin/detail-perhitungan-topsis', compact('kode_seleksi'));
+    }
+    public function save_rating(){
+        try {
+            $data = $this->request->getVar();
+            for ($i=0; $i < count($data['kode_alternatif']); $i++) { 
+                $this->ratingModel->ignore(true)->insert([
+                    'kode_seleksi' => $data['kode_seleksi'],
+                    'kode_alternatif' => $data['kode_alternatif'][$i],
+                    'hasil' => $data['hasil'][$i],
+                    'ranking' => $data['ranking'][$i]
+                ]);
+            }
+            return redirect()->back()->with('status', 'success');
+        } catch (\Exception $th) {
+            var_dump($th);
+            die();
+            return redirect()->back()->with('status', 'failed');
+        }
+    }
+    public function rekomendasikan($kode_seleksi, $kode_alternatif){
+        try {
+            $this->rekomendasiModel->insert([
+                'kode_seleksi' => $kode_seleksi,
+                'kode_alternatif' => $kode_alternatif
+            ]);
+            return redirect()->to(base_url('admin/perhitungan-topsis/detail/'.$kode_seleksi))->with('status', 'succes');
+        } catch (\Exception $th) {
+            return redirect()->to(base_url('admin/perhitungan-topsis/detail/'.$kode_seleksi))->with('status', 'failed');
+        }
     }
 }

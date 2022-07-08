@@ -72,6 +72,8 @@ $routes->group('admin', function($routes){
         $routes->get('/', 'PerhitunganTopsisController::index', ['as' => 'perhitungan_topsis_admin_index']);
         $routes->post('save', 'PerhitunganTopsisController::save', ['as' => 'perhitungan_topsis_admin_save']);
         $routes->get('detail/(:any)', 'PerhitunganTopsisController::detail/$1', ['as' => 'perhitungan_topsis_admin_detail']);
+        $routes->post('save/rating', 'PerhitunganTopsisController::save_rating', ['as' => 'perhitungan_topsis_admin_save_rating']);
+        $routes->get('save/rekomendasi/(:any)/(:any)', 'PerhitunganTopsisController::rekomendasikan/$1/$2', ['as' => 'perhitungan_topsis_admin_rekomendasikan']);
     });
 
     // Manajemen Untuk Hasil Akhir
