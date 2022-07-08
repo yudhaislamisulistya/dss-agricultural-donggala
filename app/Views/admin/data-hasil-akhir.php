@@ -23,23 +23,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Joko - AX09983</td>
-                                        <td>
-                                            <ol>
-                                                <ul>Padi</ul>
-                                                <ul>Jagung</ul>
-                                                <ul>Kacang Kedelai</ul>
-                                                <ul>Cabai</ul>
-                                            </ol>
-                                        </td>
-                                        <td>Padi</td>
-                                        <td>27 Juni 2022</td>
-                                        <td>
-                                            <a class="btn btn-iconsolid btn-sm" href="cart.html"><i class="icon-pencil">Detail Perhitungan</i></a>
-                                        </td>
-                                    </tr>
+                                    <?php foreach (get_seleksi_by_id_user(session()->get('id_user')) as $key => $value) { ?>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><?= get_user_by_id_user($value->id_user)['nama_lengkap'] ?></td>
+                                            <td>
+                                                <ol>
+                                                    <?php foreach (get_rating_by_kode_seleksi_all($value->kode_seleksi) as $key2 => $value2) { ?>
+                                                        <li><?= get_alternatif_by_kode_alternatif($value2->kode_alternatif)['nama_alternatif'] ?> - (<?= $value2->hasil ?>) - (Ranking ke <?= $value2->ranking ?>)</li>
+                                                    <?php } ?>
+                                                </ol>
+                                            </td>
+                                            <td>
+                                                <b>
+                                                    <?= get_alternatif_by_kode_alternatif(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)['kode_alternatif'])['nama_alternatif']?>
+                                                </b>
+                                            </td>
+                                            <td>
+                                                <?= $value->created_at ?>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-iconsolid btn-sm" href="<?= route_to('perhitungan_topsis_admin_detail', $value->kode_seleksi) ?>"><i class="icon-pencil">Detail Perhitungan</i></a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

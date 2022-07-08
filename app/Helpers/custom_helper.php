@@ -8,6 +8,12 @@ use App\Models\SeleksiModel;
 use App\Models\SubKriteriaModel;
 use App\Models\UserModel;
 
+
+function get_user_by_id_user($id_user){
+    $userModel = new UserModel();
+    $data = $userModel->find($id_user);
+    return $data;
+}
 function get_sub_kriteria_by_kode_kriteria($kode_kriteria){
     $subKriteriaModel = new SubKriteriaModel();
     $data = $subKriteriaModel->where('kode_kriteria', $kode_kriteria)->get()->getResult();
@@ -59,6 +65,16 @@ function get_rating_by_kode_seleksi($kode_seleksi){
     return $data;
 }
 
+function get_rating_by_kode_seleksi_all($kode_seleksi){
+    $ratingModel = new RatingModel();
+    $data = $ratingModel
+        ->where('kode_seleksi', $kode_seleksi)
+        ->orderBy('ranking', 'asc')
+        ->get()
+        ->getResult();
+    return $data;
+}
+
 function get_alternatif_by_kode_alternatif($kode_alternatif){
     $alternatifModel = new AlternatifModel();
     $data = $alternatifModel->where('kode_alternatif', $kode_alternatif)->first();
@@ -70,6 +86,12 @@ function get_rekomendasi_by_kode_seleksi($kode_seleksi){
     $data = $rekomendasiModel
         ->where('kode_seleksi', $kode_seleksi)
         ->first();
+    return $data;
+}
+
+function get_seleksi_by_id_user($id_user){
+    $seleksiModel = new SeleksiModel();
+    $data = $seleksiModel->where('id_user', $id_user)->groupBy('kode_seleksi')->get()->getResult();
     return $data;
 }
 
