@@ -27,7 +27,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Data Pengepul</h4>
-                    <a class="btn btn-primary btn-sm" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Kriteria</a>
+                    <a class="btn btn-primary btn-sm" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addModal">Tambah Pengepul</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

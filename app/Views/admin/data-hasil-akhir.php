@@ -29,14 +29,22 @@
                                             <td><?= get_user_by_id_user($value->id_user)['nama_lengkap'] ?></td>
                                             <td>
                                                 <ol>
-                                                    <?php foreach (get_rating_by_kode_seleksi_all($value->kode_seleksi) as $key2 => $value2) { ?>
-                                                        <li><?= get_alternatif_by_kode_alternatif($value2->kode_alternatif)['nama_alternatif'] ?> - (<?= $value2->hasil ?>) - (Ranking ke <?= $value2->ranking ?>)</li>
+                                                    <?php if(get_rating_by_kode_seleksi_all($value->kode_seleksi)){ ?>
+                                                        <?php foreach (get_rating_by_kode_seleksi_all($value->kode_seleksi) as $key2 => $value2) { ?>
+                                                            <li><?= get_alternatif_by_kode_alternatif($value2->kode_alternatif)['nama_alternatif'] ?> - (<?= $value2->hasil ?>) - (Ranking ke <?= $value2->ranking ?>)</li>
+                                                        <?php } ?>
+                                                    <?php }else{?>
+                                                        <span class="badge badge-danger">Urutan Belum Tersedia</span>
                                                     <?php } ?>
                                                 </ol>
                                             </td>
                                             <td>
                                                 <b>
-                                                    <?= get_alternatif_by_kode_alternatif(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)['kode_alternatif'])['nama_alternatif']?>
+                                                    <?php if(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)){ ?>
+                                                        <?= get_alternatif_by_kode_alternatif(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)['kode_alternatif'])['nama_alternatif'] ?>
+                                                    <?php }else{?>
+                                                        <span class="badge badge-danger">Rekomendasi Belum Tersedia</span>
+                                                    <?php } ?>
                                                 </b>
                                             </td>
                                             <td>

@@ -71,6 +71,17 @@
                         <h4 class="card-title">Data Perhitungan Topsis</h4>
                     </div>
                     <div class="card-body">
+                        <?php if(session()->getFlashData('status') == "success_delete"){ ?>
+                            <div class="alert alert-success alert-dismissable alert-style-1">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
+                                <i class="zmdi zmdi-check"></i>Proses Berhasil
+                            </div>
+                            <?php }else if(session()->getFlashData('status') == "failed_delete"){ ?>
+                            <div class="alert alert-danger alert-dismissable alert-style-1">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
+                                <i class="zmdi zmdi-info-outline"></i>Proses Gagal
+                            </div>
+                        <?php }?>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>

@@ -70,6 +70,7 @@ $routes->group('admin', function($routes){
     // Manajamen Untuk Perhitungan Topsis
     $routes->group('perhitungan-topsis', function($routes){
         $routes->get('/', 'PerhitunganTopsisController::index', ['as' => 'perhitungan_topsis_admin_index']);
+        $routes->get('delete/(:any)', 'PerhitunganTopsisController::delete/$1', ['as' => 'perhitungan_topsis_admin_delete']);
         $routes->post('save', 'PerhitunganTopsisController::save', ['as' => 'perhitungan_topsis_admin_save']);
         $routes->get('detail/(:any)', 'PerhitunganTopsisController::detail/$1', ['as' => 'perhitungan_topsis_admin_detail']);
         $routes->post('save/rating', 'PerhitunganTopsisController::save_rating', ['as' => 'perhitungan_topsis_admin_save_rating']);
@@ -96,6 +97,11 @@ $routes->group('collector', function($routes){
     // Manajemen Penentuan Hasil Panen
     $routes->group('hasil-panen', function($routes){
         $routes->get('/', 'HasilPanenController::index', ['as' => 'hasil_panen_collector_index']);
+        $routes->get('delete/(:any)', 'HasilPanenController::delete/$1', ['as' => 'hasil_panen_collector_delete']);
+        $routes->post('save', 'HasilPanenController::save', ['as' => 'hasil_panen_collector_save']);
+        $routes->get('detail/(:any)', 'HasilPanenController::detail/$1', ['as' => 'hasil_panen_collector_detail']);
+        $routes->post('save/rating', 'HasilPanenController::save_rating', ['as' => 'hasil_panen_collector_save_rating']);
+        $routes->get('save/rekomendasi/(:any)/(:any)', 'HasilPanenController::rekomendasikan/$1/$2', ['as' => 'hasil_panen_collector_rekomendasikan']);
     });
 
     // Manajemen Histori

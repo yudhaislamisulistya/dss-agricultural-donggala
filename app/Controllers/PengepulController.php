@@ -11,7 +11,7 @@ class PengepulController extends BaseController
         $this->userModel = new UserModel();
     }
     public function index(){
-        $data = $this->userModel->get()->getResult();
+        $data = $this->userModel->where('role', 1)->get()->getResult();
         return view('admin/data-pengepul', compact('data'));
     }
     public function save(){

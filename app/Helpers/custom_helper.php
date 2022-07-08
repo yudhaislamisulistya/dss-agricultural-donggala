@@ -32,6 +32,12 @@ function get_kriteria(){
     return $data;
 }
 
+function get_sub_kriteria(){
+    $subKriteriaModel = new SubKriteriaModel();
+    $data = $subKriteriaModel->get()->getResult();
+    return $data;
+}
+
 function get_alternatif(){
     $alternatifModel = new AlternatifModel();
     $data = $alternatifModel->get()->getResult();
@@ -92,6 +98,18 @@ function get_rekomendasi_by_kode_seleksi($kode_seleksi){
 function get_seleksi_by_id_user($id_user){
     $seleksiModel = new SeleksiModel();
     $data = $seleksiModel->where('id_user', $id_user)->groupBy('kode_seleksi')->get()->getResult();
+    return $data;
+}
+
+function get_seleksi_by_id_user_dan_limit_5($id_user){
+    $seleksiModel = new SeleksiModel();
+    $data = $seleksiModel->where('id_user', $id_user)->groupBy('kode_seleksi')->limit(5)->get()->getResult();
+    return $data;
+}
+
+function get_seleksi(){
+    $seleksiModel = new SeleksiModel();
+    $data = $seleksiModel->groupBy('kode_seleksi')->get()->getResult();
     return $data;
 }
 

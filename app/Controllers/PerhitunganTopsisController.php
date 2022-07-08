@@ -46,7 +46,13 @@ class PerhitunganTopsisController extends BaseController
             return redirect()->to(base_url('admin/perhitungan-topsis'))->with('status', 'failed');
         }
     }
-    public function delete(){
+    public function delete($kode_seleksi){
+        try {
+            $this->seleksiModel->where('kode_seleksi', $kode_seleksi)->delete();
+            return redirect()->to(base_url('admin/perhitungan-topsis'))->with('status', 'success_delete');
+        } catch (\Exception $th) {
+            return redirect()->to(base_url('admin/perhitungan-topsis'))->with('status', 'failed_delete');
+        }
     }
     public function detail($kode_seleksi){
         return view('admin/detail-perhitungan-topsis', compact('kode_seleksi'));

@@ -32,7 +32,6 @@
               <h3 class="font-light">Selamat Datang, Akun Admin!!</h3>
               <p>Welcome to the viho Family! we are glad that you are visite this
                 dashboard. we will be happy to help you grow your business.</p>
-              <button class="btn btn-light">Update</button>
             </div>
           </div>
         </div>
@@ -57,7 +56,7 @@
                   </g>
                 </svg>
               </div>
-              <h5>5</h5>
+              <h5><?= count(get_kriteria()) ?></h5>
               <p>Data Kriteria</p><a class="btn-arrow arrow-primary" href="javascript:void(0)"></a>
               <div class="parrten">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -95,7 +94,7 @@
                   </g>
                 </svg>
               </div>
-              <h5>15</h5>
+              <h5><?= count(get_sub_kriteria()) ?></h5>
               <p>Data Sub Kriteria</p><a class="btn-arrow arrow-secondary" href="javascript:void(0)"></a>
               <div class="parrten">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -132,7 +131,7 @@
                   </g>
                 </svg>
               </div>
-              <h5>20</h5>
+              <h5><?= count(get_alternatif()) ?></h5>
               <p>Data Alternatif</p><a class="btn-arrow arrow-primary" href="javascript:void(0)"></a>
               <div class="parrten">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -170,7 +169,7 @@
                   </g>
                 </svg>
               </div>
-              <h5>50</h5>
+              <h5><?= count(get_seleksi()) ?></h5>
               <p>Data Hasil Perhitungan</p><a class="btn-arrow arrow-secondary" href="javascript:void(0)"></a>
               <div class="parrten">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -196,6 +195,7 @@
             <table class="table table-bordernone">
               <thead>
                 <tr>
+                  <th>No</th>
                   <th>Pengepul</th>
                   <th>Urutan</th>
                   <th>Rekomendasi</th>
@@ -217,30 +217,30 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <p>Joko - AX09983</p>
-                  </td>
-                  <td>
-                    <ol>
-                      <li>Padi</li>
-                      <li>Jagung</li>
-                      <li>Kacang Kedelai</li>
-                      <li>Cabai</li>
-                    </ol>
-                  </td>
-                  <td>
-                    <p>Padi</p>
-                  </td>
-                  <td>
-                    <p>27 Juni 2022</p>
-                  </td>
-                  <td>
-                    <p>
-                      <a class="btn btn-primary btn-sm">Detil Perhitungan</a>
-                    </p>
-                  </td>
-                </tr>
+              <?php foreach (get_seleksi_by_id_user_dan_limit_5(session()->get('id_user')) as $key => $value) { ?>
+                    <tr>
+                        <td>1</td>
+                        <td><?= get_user_by_id_user($value->id_user)['nama_lengkap'] ?></td>
+                        <td>
+                            <ol>
+                                <?php foreach (get_rating_by_kode_seleksi_all($value->kode_seleksi) as $key2 => $value2) { ?>
+                                    <li><?= get_alternatif_by_kode_alternatif($value2->kode_alternatif)['nama_alternatif'] ?> - (<?= $value2->hasil ?>) - (Ranking ke <?= $value2->ranking ?>)</li>
+                                <?php } ?>
+                            </ol>
+                        </td>
+                        <td>
+                            <b>
+                                <?= get_alternatif_by_kode_alternatif(get_rekomendasi_by_kode_seleksi($value->kode_seleksi)['kode_alternatif'])['nama_alternatif']?>
+                            </b>
+                        </td>
+                        <td>
+                            <?= $value->created_at ?>
+                        </td>
+                        <td>
+                            <a class="btn btn-iconsolid btn-sm" href="<?= route_to('perhitungan_topsis_admin_detail', $value->kode_seleksi) ?>"><i class="icon-pencil">Detail Perhitungan</i></a>
+                        </td>
+                    </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>
