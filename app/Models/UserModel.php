@@ -19,7 +19,7 @@ class UserModel extends Model
         'email',
         'password',
         'plain_password',
-        'nomor_telepon',
+        'nohp',
         'alamat',
         'role'
     ];

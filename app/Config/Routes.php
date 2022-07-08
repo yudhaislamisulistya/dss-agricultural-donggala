@@ -80,6 +80,9 @@ $routes->group('admin', function($routes){
     // Manajemen Data Pengepul
     $routes->group('data-pengepul', function($routes){
         $routes->get('/', 'PengepulController::index', ['as' => 'pengepul_admin_index']);
+        $routes->post('save', 'PengepulController::save', ['as' => 'pengepul_admin_save']);
+        $routes->post('update', 'PengepulController::update', ['as' => 'pengepul_admin_update']);
+        $routes->post('delete', 'PengepulController::delete', ['as' => 'pengepul_admin_delete']);
     });
 });
 
