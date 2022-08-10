@@ -210,7 +210,7 @@
             $('.nama_lengkap').val(nama_lengkap);
             $('.email').val(email);
             $('.password').val(password);
-            $('.nphp').val(nphp);
+            $('.nphp').val(nohp);
             $('.alamat').val(alamat);
             $('#editModal').modal('show');
         });
